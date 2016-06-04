@@ -21,4 +21,4 @@
       service: name=apache2 state=restarted
 
     - name: add blue to load balancer
-      local_action: command aws autoscaling attach-load-balancers --auto-scaling-group-name "cd_course_blue_asg" --load-balancer-names "cd-course-load-balancer"
+      local_action: command aws autoscaling attach-load-balancers --auto-scaling-group-name "cd_course_blue_asg" --load-balancer-names "cd-course-load-balancer" --region us-west-2
