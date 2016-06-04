@@ -13,3 +13,6 @@
 
     - name: Apache server
       apt: name=apache2 state=present
+
+    - name: Install our application
+      apt: name=todoapp state=present
