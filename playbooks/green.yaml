@@ -1,0 +1,30 @@
+- name: update green
+  hosts: tag_color_green
+  become: true
+  tasks:
+    - name: load key
+      apt_key: url=http://52.40.143.46/demo.key state=present
+
+    - name: ensure our apt repo is visible to our instances
+      lineinfile: dest=/etc/apt/sources.list line="deb http://52.40.143.46/apt/ trusty main"
+
+    - name: update apt cache to reflect the new key
+      apt: update_cache=yes
+
+    - name: Apache server
+      apt: name=apache2 state=present
+
+    - name: Install our application
+      apt: name=todoapp state=latest
+
+    - name: restart apache
+      service: name=apache2 state=restarted
+
+
+- hosts: 127.0.0.1
+  connection: local
+  tasks:
+    - name: add green to load balancer
+      local_action: command aws autoscaling attach-load-balancers --auto-scaling-group-name "cd_course_green_asg" --load-balancer-names "cd-course-load-balancer" --region us-west-2
+    - name: remove blue from load balancer
+      local_action: command aws autoscaling detach-load-balancers --auto-scaling-group-name "cd_course_blue_asg" --load-balancer-names "cd-course-load-balancer" --region us-west-2
