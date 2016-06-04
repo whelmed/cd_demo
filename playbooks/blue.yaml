@@ -4,7 +4,7 @@
   ansible_user: ubuntu
   tasks:
     - name: load key
-      apt_key: url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key state=present
+      apt_key: url=http://52.40.143.46/demo.key state=present
 
     - name: ensure our apt repo is visible to our instances
       lineinfile: dest=/etc/apt/sources.list line="deb http://52.40.143.46/apt/ trusty main"
