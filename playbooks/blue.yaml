@@ -1,7 +1,6 @@
 - name: update blue
   hosts: tag_color_blue
   become: true
-  ansible_user: ubuntu
   tasks:
     - name: load key
       apt_key: url=http://52.40.143.46/demo.key state=present
