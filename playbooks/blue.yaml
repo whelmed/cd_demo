@@ -1,6 +1,7 @@
 - name: update blue
   hosts: tag_color_blue
-  remote_user: ubuntu
+  become: true
+  ansible_user: ubuntu
   tasks:
     - name: load key
       apt_key: url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key state=present
