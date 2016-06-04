@@ -1,0 +1,15 @@
+- name: update blue
+  hosts: tag_color_blue
+
+  tasks:
+    - name: load key
+      apt_key: url=http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key state=present
+
+    - name: ensure our apt repo is visible to our instances
+      lineinfile: dest=/etc/apt/sources.list line="deb http://52.40.143.46/apt/ trusty main"
+
+    - name: update apt cache to reflect the new key
+      apt: update_cache=yes
+
+    - name: Apache server
+      apt: name=apache2 state=present
