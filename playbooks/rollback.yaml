@@ -4,6 +4,6 @@
     - name: add {{ color }} to load balancer
       local_action: command aws autoscaling attach-load-balancers --auto-scaling-group-name "cd_course_{{ color }}_asg" --load-balancer-names "cd-course-load-balancer" --region us-west-2
 
-    - name: remove {{ 'blue' if color is 'green' else 'green' }} from load balancer
-      local_action: command aws autoscaling detach-load-balancers --auto-scaling-group-name "cd_course_{{ 'blue' if color is 'green' else 'green' }}_asg" --load-balancer-names "cd-course-load-balancer" --region us-west-2
+    - name: remove {{ 'blue' if color == 'green' else 'green' }} from load balancer
+      local_action: command aws autoscaling detach-load-balancers --auto-scaling-group-name "cd_course_{{ 'blue' if color  == 'green' else 'green' }}_asg" --load-balancer-names "cd-course-load-balancer" --region us-west-2
       ignore_errors: yes
