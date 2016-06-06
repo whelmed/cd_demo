@@ -2,7 +2,7 @@ from splinter import Browser
 import sys
 
 
-with Browser('phantomjs') as browser:
+with Browser('phantomjs', wait_time=10) as browser:
     # Visit URL
     url = sys.argv[1]
     browser.visit(url)
