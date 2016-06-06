@@ -6,6 +6,7 @@ with Browser('phantomjs') as browser:
     # Visit URL
     url = sys.argv[1]
     browser.visit(url)
+    print(url)
 
     headers = browser.find_by_tag('header')
 
@@ -13,7 +14,7 @@ with Browser('phantomjs') as browser:
 
     print(h1)
 
-    if h1 == "todo":
+    if h1.value == "todo":
         sys.exit(1)
     else:
         sys.exit(0)
