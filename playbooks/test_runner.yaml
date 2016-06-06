@@ -1,0 +1,6 @@
+- name: run tests against {{ environment }}
+  hosts: tag_environment_{{ environment }}
+  become: true
+  tasks:
+    - name: list hosts in {{ environment }}
+      debug: var=play_hosts
