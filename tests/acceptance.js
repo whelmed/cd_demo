@@ -17,29 +17,13 @@ page.open(address, function(status) {
   } else {
 
     console.log('Loading ' + system.args[1]);
-    (function() {
+    var exitCode = page.evaluate(function() {
+      var content = document.querySelector("header h1").textContent;
+      conole.log(content);
+    });
 
-      var exitCode = page.evaluate(function() {
-        try {
-          var content = document.querySelector("header h1").textContent;
-          if (content === "todont") {
-            console.log('CONTENT todo exists!');
-            return 0;
-          }
-          else {
-            console.log("ERROR! CONTENT todo is missing! This is essential for the application...probably!");
-            return 1;
-          }
-        } catch (ex) {
-          console.log(ex);
-          return 1;
-        }
+    phantom.exit(0);
 
-      });
-
-      phantom.exit(exitCode);
-    })();
-    
   }
 
 });
