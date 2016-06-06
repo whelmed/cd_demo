@@ -22,21 +22,24 @@ page.open(address, function(status) {
   } else {
     t = Date.now() - t;
     console.log('Loading ' + system.args[1]);
+
+    var status_code = 0;
+
     page.evaluate(function() {
       var content = document.querySelector("header h1").textContent;
 
       if (content === "todont") {
         console.log('CONTENT todo exists!');
-        phantom.exit();
+
       }
       else {
         console.error("CONTENT todo is missing! This is essential for the application...probably!")
-        phantom.exit(1);
+        status_code = 1;
       }
 
     });
 
 
   }
-  phantom.exit();
+  phantom.exit(status_code);
 });
