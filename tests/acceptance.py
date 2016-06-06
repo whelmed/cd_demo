@@ -7,11 +7,13 @@ with Browser('phantomjs') as browser:
     url = sys.argv[1]
     browser.visit(url)
 
-    element = browser.find_by_css('header h1').first
+    headers = browser.find_by_tag('header')
 
-    print(element)
+    h1 = headers.find_by_tag('h1').first
 
-    if element == "todo":
+    print(h1)
+
+    if h1 == "todo":
         sys.exit(1)
     else:
         sys.exit(0)
