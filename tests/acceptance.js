@@ -22,7 +22,7 @@ page.open(address, function(status) {
 
     console.log('Loading ' + system.args[1]);
 
-    var status_code = return page.evaluate(function() {
+    var status_code = page.evaluate(function() {
       var content = document.querySelector("header h1").textContent;
       var scode = 0;
 
