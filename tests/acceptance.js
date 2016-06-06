@@ -22,14 +22,18 @@ page.open(address, function(status) {
   } else {
     t = Date.now() - t;
     console.log('Loading ' + system.args[1]);
-    var content = document.querySelector("header h1").textContent;
+    page.evaluate(function() {
+      var content = document.querySelector("header h1").textContent;
 
-    if (content === "todont") {
-      console.log('CONTENT todo exists!');
-    }
-    else {
-      console.error("CONTENT todo is missing! This is essential for the application...probably!")
-    }
+      if (content === "todont") {
+        console.log('CONTENT todo exists!');
+      }
+      else {
+        console.error("CONTENT todo is missing! This is essential for the application...probably!")
+      }
+      
+    });
+
 
   }
   phantom.exit();
