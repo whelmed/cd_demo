@@ -27,11 +27,13 @@ page.open(address, function(status) {
 
       if (content === "todont") {
         console.log('CONTENT todo exists!');
+        phantom.exit();
       }
       else {
         console.error("CONTENT todo is missing! This is essential for the application...probably!")
+        phantom.exit(1);
       }
-      
+
     });
 
 
