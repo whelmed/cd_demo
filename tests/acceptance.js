@@ -40,5 +40,5 @@ page.open(address, function(status) {
     });
 
   }
-  phantom.exit(status_code);
+  phantom.exit(1);
 });
