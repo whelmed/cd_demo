@@ -3,5 +3,5 @@
   become: true
   tasks:
     - name: run phantomjs {{ environment_name }}
-      local_action: command phantomjs ./tests/acceptance.js {{ item }}
+      local_action: command python ./tests/acceptance.py {{ item }}
       with_items: play_hosts
