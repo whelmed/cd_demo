@@ -7,7 +7,7 @@ with Browser('phantomjs') as browser:
     url = sys.argv[1]
     browser.visit(url)
 
-
+    print("starting test on " + url)
 
     if browser.is_text_present('todo', wait_time=10):
         sys.exit(0)
