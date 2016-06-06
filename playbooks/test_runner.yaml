@@ -3,5 +3,5 @@
   become: true
   tasks:
     - name:
-      command: phantomjs ./tests/acceptance.js {{ item }}
+      local_action: command phantomjs ./tests/acceptance.js {{ item }}
       with_items: play_hosts
