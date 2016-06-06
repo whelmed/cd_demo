@@ -3,7 +3,7 @@ var page = require('webpage').create(),
   t, address;
 
 console.error = function () {
-    require("system").stderr.write(Array.prototype.join.call(arguments, ' ') + '\n');
+    system.stderr.write(Array.prototype.join.call(arguments, ' ') + '\n');
 };
 
 
@@ -33,12 +33,11 @@ page.open(address, function(status) {
 
       }
       else {
-        console.error("CONTENT todo is missing! This is essential for the application...probably!")
         status_code = 1;
+        console.error("ERROR! CONTENT todo is missing! This is essential for the application...probably!");
       }
 
     });
-
 
   }
   phantom.exit(status_code);
