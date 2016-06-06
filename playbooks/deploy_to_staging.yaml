@@ -1,0 +1,21 @@
+- name: deploy application to {{ environment }}
+  hosts: tag_environment_{{ environment }}
+  become: true
+  tasks:
+    - name: load key
+      apt_key: url=http://52.40.143.46/demo.key state=present
+
+    - name: ensure our apt repo is visible to our instances
+      lineinfile: dest=/etc/apt/sources.list line="deb http://52.40.143.46/apt/ trusty main"
+
+    - name: update apt cache to reflect the new key
+      apt: update_cache=yes
+
+    - name: Apache server
+      apt: name=apache2 state=present
+
+    - name: Install our application
+      apt: name=todoapp state=latest
+
+    - name: restart apache
+      service: name=apache2 state=restarted
