@@ -1,6 +1,6 @@
 var page = require('webpage').create(),
   system = require('system'),
-  t, address;
+  address;
 
 console.error = function () {
     system.stderr.write(Array.prototype.join.call(arguments, ' ') + '\n');
@@ -12,7 +12,6 @@ if (system.args.length === 1) {
   phantom.exit();
 }
 
-t = Date.now();
 address = system.args[1];
 
 // This isn't a "REAL" test. It's just a basic get for our demo.
@@ -20,25 +19,25 @@ page.open(address, function(status) {
   if (status !== 'success') {
     console.error('FAILED to load the address');
   } else {
-    t = Date.now() - t;
+
     console.log('Loading ' + system.args[1]);
 
-    var status_code = 0;
-
-    page.evaluate(function() {
+    var status_code = return page.evaluate(function() {
       var content = document.querySelector("header h1").textContent;
+      var scode = 0;
 
       if (content === "todont") {
         console.log('CONTENT todo exists!');
-
       }
       else {
-        status_code = 1;
+        scode = 1;
         console.error("ERROR! CONTENT todo is missing! This is essential for the application...probably!");
       }
+
+      return scode;
 
     });
 
   }
-  phantom.exit(1);
+  phantom.exit(status_code);
 });
