@@ -17,7 +17,7 @@ page.open(address, function(status) {
   } else {
 
     console.log('Loading ' + system.args[1]);
-    function() {
+    (function() {
 
       var exitCode = page.evaluate(function() {
         try {
@@ -38,7 +38,8 @@ page.open(address, function(status) {
       });
 
       phantom.exit(exitCode);
-    }
+    })();
+    
   }
 
 });
