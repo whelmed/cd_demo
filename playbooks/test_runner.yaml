@@ -1,7 +1,7 @@
-- name: run tests against {{ environment }}
-  hosts: tag_environment_{{ environment }}
+- name: run tests against {{ environment_name }}
+  hosts: tag_environment_{{ environment_name }}
   become: true
   tasks:
-    - name:
+    - name: run phantomjs against {{ item }}
       local_action: command phantomjs ./tests/acceptance.js {{ item }}
       with_items: play_hosts
