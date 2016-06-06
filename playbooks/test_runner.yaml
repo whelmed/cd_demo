@@ -4,4 +4,4 @@
   tasks:
     - name: run phantomjs {{ environment_name }}
       local_action: command phantomjs ./tests/acceptance.js {{ item }}
-      with_items: {{ play_hosts | [] }} 
+      with_items: "{{ play_hosts | [] }}"
