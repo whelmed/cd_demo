@@ -14,6 +14,13 @@ if (system.args.length === 1) {
 
 address = system.args[1];
 
+
+page.onConsoleMessage = function(msg) {
+  if (msg == "ERROR") {
+    phantom.exit(1);
+  }
+};
+
 // This isn't a "REAL" test. It's just a basic get for our demo.
 page.open(address, function(status) {
   if (status !== 'success') {
@@ -22,22 +29,18 @@ page.open(address, function(status) {
 
     console.log('Loading ' + system.args[1]);
 
-    var status_code = page.evaluate(function() {
+    page.evaluate(function() {
       var content = document.querySelector("header h1").textContent;
-      var scode = 0;
-
       if (content === "todont") {
         console.log('CONTENT todo exists!');
       }
       else {
-        scode = 1;
+        console.log("ERROR");
         console.error("ERROR! CONTENT todo is missing! This is essential for the application...probably!");
       }
-
-      return scode;
 
     });
 
   }
-  phantom.exit(status_code);
+  phantom.exit();
 });
