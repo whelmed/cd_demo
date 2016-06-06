@@ -8,7 +8,7 @@ with Browser('phantomjs') as browser:
     browser.visit(url)
     print(url)
 
-    headers = browser.find_by_tag('header')
+    headers = browser.find_by_tag('header').first
 
     h1 = headers.find_by_tag('h1').first
 
