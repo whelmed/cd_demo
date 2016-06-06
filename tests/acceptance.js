@@ -24,7 +24,7 @@ page.open(address, function(status) {
     console.log('Loading ' + system.args[1]);
     var content = document.querySelector("header h1").textContent;
 
-    if (content === "todo") {
+    if (content === "todont") {
       console.log('CONTENT todo exists!');
     }
     else {
